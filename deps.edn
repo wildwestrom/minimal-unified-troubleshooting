@@ -1,0 +1,17 @@
+{:paths ["src"]
+
+ :deps {reagent/reagent           {:mvn/version "1.1.0"}
+        metosin/reitit            {:mvn/version "0.5.15"}
+        metosin/reitit-frontend   {:mvn/version "0.5.15"}
+        metosin/reitit-spec       {:mvn/version "0.5.15"}
+        com.github.mainej/headlessui-reagent {:mvn/version "1.4.1.40"}
+        org-parser/org-parser {:mvn/version "0.1.26"}
+
+        lambdaisland/fetch          {:mvn/version "1.0.33"}
+        kitchen-async/kitchen-async {:mvn/version "0.1.0-SNAPSHOT"}
+
+        thheller/shadow-cljs          {:mvn/version "2.15.9"}
+        cider/cider-nrepl             {:mvn/version "0.26.0"}}
+ ;; clojure -M:outdated --upgrade
+ :aliases {:upgrade {:extra-deps {com.github.liquidz/antq {:mvn/version "1.0.0"}}
+                      :main-opts  ["-m" "antq.core" "--upgrade"]}}}

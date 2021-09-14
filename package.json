@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "scripts": {
+        "release": "shadow-cljs release app",
+        "watch": "shadow-cljs watch app",
+    },
+    "devDependencies": {
+        "shadow-cljs": "2.15.9",
+    },
+    "dependencies": {
+        "rehype-raw": "^6.1.0",
+        "rehype-stringify": "^9.0.2",
+        "unified": "^10.1.0",
+        "uniorg-extract-keywords": "^0.3.1",
+        "uniorg-parse": "^0.3.1",
+        "uniorg-rehype": "^0.3.1"
+    }
+}

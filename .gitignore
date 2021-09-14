@@ -1,0 +1,16 @@
+/.cpcache/
+/.shadow-cljs/
+/.calva/
+/.idea/
+/.lsp/
+/.log/
+/.clj-kondo/.cache/*
+/node_modules/
+.dir-locals.el
+.nrepl-port
+
+/public/*
+!/public/index.html
+yarn-error.log
+
+.DS_Store
