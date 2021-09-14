@@ -3,18 +3,13 @@
             ["uniorg-parse" :as uniorg]
             [reagent.core :as reagent]
             [reagent.dom :as r.dom]
-            #_["uniorg-rehype$default" :as rehype]
-            #_["rehype-stringify$default" :as html]
-            #_["rehype-raw$default" :as raw]
-            #_["uniorg-extract-keywords" :refer [extractKeywords]]
-            #_shadow.resource
+            ["uniorg-rehype$default" :as rehype]
+            ["rehype-stringify$default" :as html]
+            ["rehype-raw$default" :as raw]
+            ["uniorg-extract-keywords" :refer [extractKeywords]]
             ))
 
 (def ^:private processor
-  (.. (unified)
-      (use uniorg)))
-
-#_(def ^:private processor
   (.. (unified)
       (use uniorg)
       (use extractKeywords)
@@ -22,32 +17,38 @@
       (use raw)
       (use html)))
 
-(comment
-  (defn process-org
-    [org-string]
-    (.processSync processor org-string))
+(defn process-org
+  [org-string]
+  (.processSync processor org-string))
 
-  (defn org->html
-    [org-string]
-    (.-contents (process-org org-string)))
+ (defn org->html
+   [org-string]
+   (.-contents (process-org org-string)))
 
-  (defn org->metadata
-    [org-string]
-    (js->clj (.-data (process-org org-string))
-             :keywordize-keys :true))
+ (defn org->metadata
+   [org-string]
+   (js->clj (.-data (process-org org-string))
+            :keywordize-keys :true))
 
-  (defn post-map
-    [org-string]
-    {:content (org->html org-string)
-     :meta    (org->metadata org-string)})
+ (defn post-map
+   [org-string]
+   {:content (org->html org-string)
+    :meta    (org->metadata org-string)})
 
-  (defn get-from-meta
-    [file key]
-    (-> file :meta key))
+(defn get-from-meta
+  [file key]
+  (-> file :meta key))
 
-  (process-org (shadow.resource/inline "posts/001-first-post.org")))
+(def org-text "* One heading\n** And here's another heading")
 
-
+(defn app
+  []
+  [:<>
+   [:h3 "Holy fuckeroni, is this working? I guess it is if you can see it."]
+   [:br]
+   [:p "Ok, now let's see if this works:"]
+   [:p org-text]
+   [:p (org->html org-text)]])
 
 (defn mount-root
   [component]
@@ -56,7 +57,7 @@
 (defn ^:export init
   []
   (js/console.debug "init")
-  (mount-root [:div "Holy fuckeroni, is this working? I guess it is if you can see it."]))
+  (mount-root [app]))
 
 (defn ^:dev/before-load stop
   []
