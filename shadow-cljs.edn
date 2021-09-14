@@ -1,8 +1,9 @@
-{:deps true
+{:source-paths ["src"]
+
+ :dependencies [[reagent "1.1.0"]]
 
  :nrepl
- {:port  3333
-  :nrepl {:middleware [refactor-nrepl.middleware/wrap-refactor]}}
+ {:port 3333}
 
  :builds
  {:app {:target     :esm
@@ -16,5 +17,4 @@
         :devtools {:before-load app.core/stop
                    :after-load  app.core/init
                    :http-root   "public"
-                   :http-port   3000
-                   :preloads    [devtools.preload]}}}}
+                   :http-port   3000}}}}

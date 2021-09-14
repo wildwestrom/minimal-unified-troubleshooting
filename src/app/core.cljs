@@ -56,7 +56,7 @@
 (defn ^:export init
   []
   (js/console.debug "init")
-  (mount-root [:div "Holy fuckeroni, is this working?"]))
+  (mount-root [:div "Holy fuckeroni, is this working? I guess it is if you can see it."]))
 
 (defn ^:dev/before-load stop
   []
