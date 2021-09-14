@@ -1,6 +1,8 @@
-(ns app.org-parser
+(ns app.core
   (:require ["unified$unified" :as unified]
             ["uniorg-parse" :as uniorg]
+            [reagent.core :as reagent]
+            [reagent.dom :as r.dom]
             #_["uniorg-rehype$default" :as rehype]
             #_["rehype-stringify$default" :as html]
             #_["rehype-raw$default" :as raw]
@@ -43,8 +45,19 @@
     [file key]
     (-> file :meta key))
 
-  (defn- gen-file-title
-    [file]
-    (get-from-meta file :filename))
-
   (process-org (shadow.resource/inline "posts/001-first-post.org")))
+
+
+
+(defn mount-root
+  [component]
+  (r.dom/render component (.getElementById js/document "app")))
+
+(defn ^:export init
+  []
+  (js/console.debug "init")
+  (mount-root [:div "Holy fuckeroni, is this working?"]))
+
+(defn ^:dev/before-load stop
+  []
+  (js/console.debug "stop"))
